@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compre Já</title>
+    <link rel="shortcut icon" href="img/marker.png">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="scratch.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row" style="margin:30px 0">
+            <div class="col-lg-3">
+                <img src="img/logo.png" class="img-thumbnail">
+            </div>
+            <div class="col-lg-9">
+                <h3>Nome do Produto</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6" id="form-container">
+
+                <form id="step_1" class="form-step" method="POST" action="processa.php">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Preencha seus dados para receber contato
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <fieldset>
+                                <div class="row form-group">
+                                    <div class="col-lg-6">
+                                        <label>Nome Completo</label>
+                                        <input class="input form-control" id="nome" type="text" name="nome" placeholder="Nome Completo" title="Nome Completo">
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Data de Nascimento</label>
+                                        <input class="input form-control" type="date" name="nascimento" id="nascimento" title="Data de nascimento">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col-lg-6">
+                                        <label>Email</label>
+                                        <input class="input form-control" type="email" name="email" id="email" placeholder="Ex: gustavobelo28@gmail.com" title="Email">
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Telefone</label>
+                                        <input class="input form-control" type="tel" name="telefone" id="telefone" placeholder="Telefone" title="Telefone">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="submit" class="btn btn-lg btn-info next-step" value="Próximo Passo" title="Próximo Passo">Próximo Passo</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+
+                <form action="processa.php" method="POST" id="step_2" class="form-step" style="display:none">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Preencha seus dados para receber contato
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <fieldset>
+                                <div class="row form-group">
+                                    <div class="col-lg-6">
+                                        <label>Região</label>
+                                        <select onchange="mudaValor()" class="input form-control" id="regiao" name="regiao" title="Região" required>
+                                            <option id="regiao" value="Indiferente">Selecione a sua região</option>
+                                            <option id="regiao" value="Sul">Sul</option>
+                                            <option id="regiao" value="Sudeste">Sudeste</option>
+                                            <option id="regiao" value="Centro-Oeste">Centro-Oeste</option>
+                                            <option id="regiao" value="Nordeste">Nordeste</option>
+                                            <option id="regiao" value="Norte">Norte</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <label>Unidade</label>
+                                        <select class="input form-control unidade" name="unidade" id="unidade" title="Unidade" required>
+                                                <option id="u0" >Selecione a unidade mais próxima</option>
+                                                <option id="u1" value="porto" >Porto Alegre</option>
+                                                <option id="u2" value="curitiba" >Curitiba</option>
+                                                <option id="u3" value="saoPaulo" >São Paulo</option>
+                                                <option id="u4" value="rioJaneiro" >Rio de Janeiro</option>
+                                                <option id="u5" value="beloHorizonte" >Belo Horizonte</option>
+                                                <option id="u6" value="brasilia" >Brasília</option>
+                                                <option id="u7" value="salvador" >Salvador</option>
+                                                <option id="u8" value="recife" >Recife</option>
+                                                <option id="u9" value="naoPossui" >Não possui disponibilidade</option>
+                                            </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button type="submit" class="btn btn-lg btn-info next-step" title="Enviar">Enviar</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="step_sucesso" class="form-step" style="display:none">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Obrigado pelo cadastro!
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            Em breve você receberá uma ligação com mais informações!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h1>Chamada interessante para o produto</h1>
+                <h2>Mais uma informação relevante</h2>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('.next-step').click(function(event) {
+                event.preventDefault();
+                $(this).parents('.form-step').hide().next().show();
+            });
+        });
+    </script>
+</body>
+
+</html>
